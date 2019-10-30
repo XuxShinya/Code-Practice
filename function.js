@@ -58,3 +58,28 @@ var lengthOfLongestSubstring = function (str) {
 
   return flag
 }
+//3.Z字变换
+let convert = function (s, numRows) {
+  if (numRows == 1) {
+    return s
+  }
+  let len = Math.min(s.length, numRows)
+  let rows = []
+  for (let i = 0; i < len; i++) {
+    rows[i] = ''
+  }
+  let loc = 0
+  let flag = false
+  for (const c of s) {
+    rows[loc] += c
+    if (loc == 0 || loc == numRows - 1) {
+      flag = !flag
+    }
+    loc += flag ? 1 : -1
+  }
+  let result = ''
+  for (const row of rows) {
+    result += row
+  }
+  return result
+}
